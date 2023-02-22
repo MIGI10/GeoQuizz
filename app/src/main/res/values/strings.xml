@@ -1,8 +1,19 @@
 <resources>
     <string name="app_name">GeoQuizz</string>
-    <string name="question">Is Paris the capital of France?</string>
     <string name="button1">True</string>
     <string name="button2">False</string>
     <string name="correct">Correct answer!</string>
     <string name="incorrect">Incorrect answer!</string>
+    <string-array name="questions">
+        <item>Paris is the capital of france</item>
+        <item>Hydrogen\'s atomic weight is 2</item>
+        <item>The PIC18F4321 model has 40 pins</item>
+        <item>A NOT chip with 16 pins has 6 NOT inputs</item>
+        <item>A technical task pr should be reviewed by at least 2 people</item>
+        <item>If a function is continuous it is derivable</item>
+        <item>A pointer in C is bidirectional</item>
+        <item>The directional derivative is a vector</item>
+        <item>Matrices can be divided</item>
+        <item>The US president is nicknamed Sleepy Joe</item>
+    </string-array>
 </resources>
