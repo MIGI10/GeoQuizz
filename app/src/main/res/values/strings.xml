@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">GeoQuizz</string>
+    <string name="question">Is Paris the capital of France?</string>
+    <string name="button1">True</string>
+    <string name="button2">False</string>
+    <string name="correct">Correct answer!</string>
+    <string name="incorrect">Incorrect answer!</string>
+</resources>
