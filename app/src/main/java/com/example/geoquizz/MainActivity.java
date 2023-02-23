@@ -13,24 +13,27 @@ import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button addPlayerButton, startButton, trueButton, falseButton;
-    boolean startGame = false;
-    ArrayList<String> players = new ArrayList<String>();
+    private static final boolean[] ANSWERS =
+            {true, false, true, false, false, false, false, true, true, true};
+    private final ArrayList<Player> players = new ArrayList<>();
+    private final ArrayList<Question> questions = new ArrayList<>();
+    private Player currentPlayer;
+    private Question currentQuestion;
+    private int currentRound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_data);
 
-        setContentView(R.layout.activity_data);
-
-        addPlayerButton = findViewById(R.id.add_player);
-        startButton = findViewById(R.id.start_button);
-        TextView text = findViewById(R.id.playerUsernameField);
+        Button addPlayerButton = findViewById(R.id.add_player);
+        Button startButton = findViewById(R.id.start_button);
+        TextView text = findViewById(R.id.username_field);
 
         addPlayerButton.setOnClickListener(v -> {
-            String username = (String) text.getText();
-            players.add(username);
+            Player player = new Player((String) text.getText());
+            players.add(player);
         });
 
         startButton.setOnClickListener(v -> {
@@ -38,12 +41,10 @@ public class MainActivity extends AppCompatActivity {
             startGame();
         });
 
-        ArrayList<Question> questions = new ArrayList<>();
-        boolean[] isTrue = {true, false, true, false, false, false, false, true, true, true};
         Resources res = getResources();
         String[] questionHeaders = res.getStringArray(R.array.questions);
 
-        for (int i=0; i<10; i++){
+        for (int i=0; i<10; i++) {
 
             Question q = new Question();
 
@@ -53,32 +54,62 @@ public class MainActivity extends AppCompatActivity {
             questions.add(q);
         }
 
-
-
-        trueButton = findViewById(R.id.true_button);
-        falseButton = findViewById(R.id.false_button);
+        Button trueButton = findViewById(R.id.true_button);
+        Button falseButton = findViewById(R.id.false_button);
 
         trueButton.setOnClickListener(v -> {
-            Toast.makeText(MainActivity.this, R.string.correct, Toast.LENGTH_SHORT).show();
+            if (currentQuestion.getAnswer()) {
+                currentPlayer.updateScore(currentRound, true);
+            }
+            else {
+                currentPlayer.updateScore(currentRound, false);
+            }
         });
 
         falseButton.setOnClickListener(v -> {
-            Toast.makeText(MainActivity.this, R.string.incorrect, Toast.LENGTH_SHORT).show();
+            if (currentQuestion.getAnswer()) {
+                currentPlayer.updateScore(currentRound, false);
+            }
+            else {
+                currentPlayer.updateScore(currentRound, true);
+            }
         });
     }
 
     private void startGame() {
 
-        Collections.shuffle(questions);
+        TextView playerLabel = findViewById(R.id.player_label);
+        TextView questionLabel = findViewById(R.id.question_label);
 
         for (int i = 0; i < players.size(); i++) {
-            TextView playerLabel = findViewById(R.id.player_label);
-            playerLabel.setText(getString(R.string.player_turn, i+1));
+            currentPlayer = players.get(i);
+            Collections.shuffle(questions);
+            playerLabel.setText(String.format(R.string.player_turn, i + 1));
+            for (int j = 0; j < questions.size(); j++) {
+                currentRound = j;
+                currentQuestion = questions.get(j);
+                questionLabel.setText(currentQuestion.getQuestion());
+                currentQuestion.waitForAnswer();
 
-            TextView questionLabel = findViewById(R.id.question_label);
-            questionLabel.setText(getString(questions, i+1));
-
-            questions.a
+            }
         }
+        showWinner();
+    }
+
+    private void showWinner() {
+
+        setContentView(R.layout.activity_results);
+
+        TextView winnerLabel = findViewById(R.id.winner_label);
+
+        int bestScore = 0;
+        int bestPlayer;
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).getScore() > bestScore) {
+                bestScore = players.get(i).getScore();
+                bestPlayer = i;
+            }
+        }
+        results.setText();
     }
 }

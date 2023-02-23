@@ -22,4 +22,9 @@ public class Question {
         isTrue = aTrue;
     }
 
+    public boolean getAnswer() {
+    }
+
+    public void waitForAnswer() {
+    }
 }
