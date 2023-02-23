@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             Question q = new Question();
 
             q.setQuestion(questionHeaders[i]);
-            q.setTrue(isTrue[i]);
+            q.setTrue(ANSWERS[i]);
 
             questions.add(q);
         }
