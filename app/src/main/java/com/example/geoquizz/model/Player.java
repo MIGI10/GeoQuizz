@@ -1,4 +1,4 @@
-package com.example.geoquizz;
+package com.example.geoquizz.model;
 
 public class Player {
     private String username;

@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/textInputPlayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -23,19 +23,19 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
         android:text="Enter player X name"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/textInputPlayer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/saveButon"
+        android:id="@+id/addPlayerButton"
         android:layout_width="96dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_marginTop="60dp"
-        android:text="Save"
+        android:text="Add player"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputPlayer" />
 
     <Button
         android:id="@+id/saveAndStartButton"
@@ -45,5 +45,5 @@
         android:text="Save and Start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveButon" />
+        app:layout_constraintTop_toBottomOf="@+id/addPlayerButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

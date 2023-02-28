@@ -1,4 +1,4 @@
-package com.example.geoquizz;
+package com.example.geoquizz.model;
 
 public class Question {
 
@@ -18,11 +18,12 @@ public class Question {
         this.question = question;
     }
 
-    public void setTrue(boolean aTrue) {
+    public void setIsTrue(boolean aTrue) {
         isTrue = aTrue;
     }
 
     public boolean getAnswer() {
+        return isTrue;
     }
 
     public void waitForAnswer() {

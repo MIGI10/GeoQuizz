@@ -1,4 +1,4 @@
-package com.example.geoquizz;
+package com.example.geoquizz.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,10 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.geoquizz.R;
+import com.example.geoquizz.model.Player;
+import com.example.geoquizz.model.Question;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,12 +27,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.questions);
         //setContentView(R.layout.activity_data);
 
-        Button addPlayerButton = findViewById(R.id.add_player);
-        Button startButton = findViewById(R.id.start_button);
-        TextView text = findViewById(R.id.username_field);
+        Button addPlayerButton = findViewById(R.id.addPlayerButton);
+        Button startButton = findViewById(R.id.saveAndStartButton);
+        TextView text = findViewById(R.id.textInputPlayer);
 
         addPlayerButton.setOnClickListener(v -> {
             Player player = new Player((String) text.getText());
@@ -37,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         startButton.setOnClickListener(v -> {
-            setContentView(R.layout.activity_main);
+            setContentView(R.layout.questions);
             startGame();
         });
 
@@ -49,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             Question q = new Question();
 
             q.setQuestion(questionHeaders[i]);
-            q.setTrue(ANSWERS[i]);
+            q.setIsTrue(ANSWERS[i]);
 
             questions.add(q);
         }
