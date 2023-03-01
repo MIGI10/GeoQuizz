@@ -7,8 +7,8 @@
     <string name="correct">Correct answer!</string>
     <string name="incorrect">Incorrect answer!</string>
     <string name="final_results">Final results:</string>
-    <string name="correctToast">Correct answer:</string>
-    <string name="incorrectToast">Incorrect answer:</string>
+    <string name="correct_toast">Correct answer!</string>
+    <string name="incorrect_toast">Incorrect answer!</string>
     <string-array name="questions">
         <item>Paris is the capital of france</item>
         <item>Hydrogen\'s atomic weight is 2</item>

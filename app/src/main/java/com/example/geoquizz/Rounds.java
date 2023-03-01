@@ -41,8 +41,6 @@ public class Rounds extends AppCompatActivity {
         });
 
         falseButton.setOnClickListener(v -> {
-            Toast toastIncorrect = Toast.makeText(this, R.string.incorrectToast, Toast.LENGTH_SHORT);
-            toastIncorrect.show();
             questionAnswered(false);
         });
     }
@@ -53,11 +51,11 @@ public class Rounds extends AppCompatActivity {
                 MainActivity.questions.get(currentQuestionNum).getAnswer());
 
         if (isCorrect){
-            Toast toastCorrect = Toast.makeText(this, R.string.correctToast, Toast.LENGTH_SHORT);
+            Toast toastCorrect = Toast.makeText(this, R.string.correct_toast, Toast.LENGTH_SHORT);
             toastCorrect.show();
         }
         else {
-            Toast toastIncorrect = Toast.makeText(this, R.string.incorrectToast, Toast.LENGTH_SHORT);
+            Toast toastIncorrect = Toast.makeText(this, R.string.incorrect_toast, Toast.LENGTH_SHORT);
             toastIncorrect.show();
         }
 
