@@ -6,6 +6,7 @@
     <string name="button_false">False</string>
     <string name="correct">Correct answer!</string>
     <string name="incorrect">Incorrect answer!</string>
+    <string name="final_results">Final results:</string>
     <string-array name="questions">
         <item>Paris is the capital of france</item>
         <item>Hydrogen\'s atomic weight is 2</item>
