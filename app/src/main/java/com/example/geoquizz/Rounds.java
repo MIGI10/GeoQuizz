@@ -8,49 +8,61 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Collections;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Rounds extends AppCompatActivity {
-    private Player currentPlayer;
-    private Question currentQuestion;
+
+    private TextView playerLabel;
+    private TextView questionLabel;
+    private int currentPlayerNum;
+    private int currentQuestionNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.questions);
 
-        TextView playerLabel = findViewById(R.id.playerLabel);
-        TextView questionLabel = findViewById(R.id.textLabelQuestion);
+        playerLabel = findViewById(R.id.player_label);
+        questionLabel = findViewById(R.id.question_label);
         Button trueButton = findViewById(R.id.true_button);
         Button falseButton = findViewById(R.id.false_button);
 
         trueButton.setText(R.string.button_true);
         falseButton.setText(R.string.button_false);
 
-        AtomicInteger numClicks = new AtomicInteger();
+        playerLabel.setText(MainActivity.players.get(0).getUsername());
+        questionLabel.setText(MainActivity.questions.get(0).getQuestion());
 
         trueButton.setOnClickListener(v -> {
-            currentPlayer.updateScore(true, currentQuestion.getAnswer());
-            numClicks.getAndIncrement();
+            questionAnswered(true);
         });
 
         falseButton.setOnClickListener(v -> {
-            currentPlayer.updateScore(false, currentQuestion.getAnswer());
-            numClicks.getAndIncrement();
+            questionAnswered(false);
         });
+    }
 
-        for (int i = 0; i < MainActivity.players.size(); i++) {
-            numClicks.set(0);
-            currentPlayer = MainActivity.players.get(i);
-            Collections.shuffle(MainActivity.questions);
-            playerLabel.setText(currentPlayer.getUsername());
-            for (int j = 0; j < MainActivity.questions.size(); j++) {
-                currentQuestion = MainActivity.questions.get(j);
-                questionLabel.setText(currentQuestion.getQuestion());
-                currentQuestion.waitForAnswer(j, numClicks.intValue());
+    private void questionAnswered(boolean answer) {
+
+        Player currentPlayer = MainActivity.players.get(currentPlayerNum);
+        Question currentQuestion = MainActivity.questions.get(currentQuestionNum);
+
+        currentPlayer.updateScore(answer, currentQuestion.getAnswer());
+
+        if (currentQuestionNum + 1 == 10) {
+            if (currentPlayerNum == MainActivity.players.size() - 1) {
+                switchToResults();
+            }
+            else {
+                Collections.shuffle(MainActivity.questions);
+                playerLabel.setText(currentPlayer.getUsername());
+                currentQuestionNum = 0;
+                currentPlayerNum++;
             }
         }
-        switchToResults();
+        else {
+            questionLabel.setText(currentQuestion.getQuestion());
+            currentQuestionNum++;
+        }
     }
 
     private void switchToResults(){

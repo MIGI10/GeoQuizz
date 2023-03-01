@@ -70,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void switchToRounds(){
         Intent switchToRounds = new Intent(this, Rounds.class);
+        switchToRounds.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        switchToRounds.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(switchToRounds);
+        overridePendingTransition (0, 0);
     }
 }
