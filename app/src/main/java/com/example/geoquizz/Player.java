@@ -5,7 +5,9 @@ public class Player {
     private int score;
 
     public Player(String username) {
+
         this.username = username;
+        this.score = 0;
     }
 
     public String getUsername() {
@@ -16,7 +18,22 @@ public class Player {
         return score;
     }
 
-    public void roundWon() {
-        score++;
+    public void updateScore(boolean playerAnswer, boolean questionSolution){
+
+        if (playerAnswer == questionSolution){
+            score++;
+        }
+    }
+
+    public void swapPlayers(Player that){
+
+        String userNameAux = that.username;
+        int scoreAux = that.score;
+
+        that.username = this.username;
+        that.score = this.score;
+
+        this.username = userNameAux;
+        this.score = scoreAux;
     }
 }
