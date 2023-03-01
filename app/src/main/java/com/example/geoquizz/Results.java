@@ -18,6 +18,10 @@ public class Results extends AppCompatActivity {
         TextView message = findViewById(R.id.textView3);
         TextView results = findViewById(R.id.results);
 
+        winnerLabel.setTextSize(40);
+        message.setTextSize(25);
+        results.setTextSize(25);
+
         sortPlayersByScore();
 
         aux = MainActivity.players.get(0).getUsername() + " is the winner!!!";

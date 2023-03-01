@@ -8,8 +8,9 @@
 
     <TextView
         android:id="@+id/question_label"
-        android:layout_width="112dp"
-        android:layout_height="20dp"
+        android:layout_width="297dp"
+        android:layout_height="60dp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,9 +39,10 @@
 
     <TextView
         android:id="@+id/player_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="282dp"
+        android:layout_height="66dp"
         android:layout_marginBottom="100dp"
+        android:gravity="center"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/question_label"
         app:layout_constraintEnd_toEndOf="parent"

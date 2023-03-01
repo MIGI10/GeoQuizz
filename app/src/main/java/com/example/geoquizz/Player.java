@@ -18,11 +18,13 @@ public class Player {
         return score;
     }
 
-    public void updateScore(boolean playerAnswer, boolean questionSolution){
+    public boolean updateScore(boolean playerAnswer, boolean questionSolution){
 
         if (playerAnswer == questionSolution){
             score++;
+            return true;
         }
+        return false;
     }
 
     public void swapPlayers(Player that){

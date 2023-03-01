@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,7 +27,8 @@ public class Rounds extends AppCompatActivity {
         Button trueButton = findViewById(R.id.true_button);
         Button falseButton = findViewById(R.id.false_button);
 
-        playerLabel.setTextSize(30);
+        playerLabel.setTextSize(50);
+        questionLabel.setTextSize(25);
 
         trueButton.setText(R.string.button_true);
         falseButton.setText(R.string.button_false);
@@ -39,14 +41,25 @@ public class Rounds extends AppCompatActivity {
         });
 
         falseButton.setOnClickListener(v -> {
+            Toast toastIncorrect = Toast.makeText(this, R.string.incorrectToast, Toast.LENGTH_SHORT);
+            toastIncorrect.show();
             questionAnswered(false);
         });
     }
 
     private void questionAnswered(boolean answer) {
 
-        MainActivity.players.get(currentPlayerNum).updateScore(answer,
+        boolean isCorrect = MainActivity.players.get(currentPlayerNum).updateScore(answer,
                 MainActivity.questions.get(currentQuestionNum).getAnswer());
+
+        if (isCorrect){
+            Toast toastCorrect = Toast.makeText(this, R.string.correctToast, Toast.LENGTH_SHORT);
+            toastCorrect.show();
+        }
+        else {
+            Toast toastIncorrect = Toast.makeText(this, R.string.incorrectToast, Toast.LENGTH_SHORT);
+            toastIncorrect.show();
+        }
 
         if (currentQuestionNum + 1 == 10) {
             if (currentPlayerNum == MainActivity.players.size() - 1) {

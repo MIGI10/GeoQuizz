@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
             players.add(player);
             aux = "Enter player " + playerNumber.getAndIncrement() + " name";
             textView.setText(aux);
+            editText.setText("");
         });
 
         startButton.setOnClickListener(v -> {
