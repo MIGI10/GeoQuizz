@@ -26,6 +26,8 @@ public class Rounds extends AppCompatActivity {
         Button trueButton = findViewById(R.id.true_button);
         Button falseButton = findViewById(R.id.false_button);
 
+        playerLabel.setTextSize(30);
+
         trueButton.setText(R.string.button_true);
         falseButton.setText(R.string.button_false);
 
@@ -43,10 +45,8 @@ public class Rounds extends AppCompatActivity {
 
     private void questionAnswered(boolean answer) {
 
-        Player currentPlayer = MainActivity.players.get(currentPlayerNum);
-        Question currentQuestion = MainActivity.questions.get(currentQuestionNum);
-
-        currentPlayer.updateScore(answer, currentQuestion.getAnswer());
+        MainActivity.players.get(currentPlayerNum).updateScore(answer,
+                MainActivity.questions.get(currentQuestionNum).getAnswer());
 
         if (currentQuestionNum + 1 == 10) {
             if (currentPlayerNum == MainActivity.players.size() - 1) {
@@ -54,14 +54,14 @@ public class Rounds extends AppCompatActivity {
             }
             else {
                 Collections.shuffle(MainActivity.questions);
-                playerLabel.setText(currentPlayer.getUsername());
-                currentQuestionNum = 0;
                 currentPlayerNum++;
+                currentQuestionNum = 0;
+                playerLabel.setText(MainActivity.players.get(currentPlayerNum).getUsername());
             }
         }
         else {
-            questionLabel.setText(currentQuestion.getQuestion());
             currentQuestionNum++;
+            questionLabel.setText(MainActivity.questions.get(currentQuestionNum).getQuestion());
         }
     }
 
