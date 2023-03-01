@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         Button startButton = findViewById(R.id.saveAndStartButton);
         EditText editText = findViewById(R.id.textInputPlayer);
         TextView textView = findViewById(R.id.textView2);
+        
+        textView.setTextSize(25);
 
         addPlayerButton.setText(R.string.button_add);
         startButton.setText(R.string.button_sas);
